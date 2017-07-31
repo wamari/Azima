@@ -1,12 +1,20 @@
 package com.harlertechnologies.azima;
 
+import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.net.wifi.aware.PublishConfig;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -15,6 +23,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private EditText editTextIDNo;
     private EditText editTextTelNo;
     private Button buttonCreate;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +49,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return;
         }
         //disable create button
-        buttonCreate.setEnabled(false);
+        //buttonCreate.setEnabled(false);
 
         final ProgressDialog loading;
         loading=ProgressDialog.show(this,"Creating account...","Please Wait....", false, false);
 
- /*       final ProgressDialog pd = new ProgressDialog(RegisterActivity.this,R.style.AppTheme);
-        pd.setIndeterminate(true);
-        pd.setMessage("Creating account...");
-        pd.show();
-*/
         //get values from Edit text
         String fullName = editTextFullname.getText().toString();
         String email = editTextEmail.getText().toString();
@@ -56,6 +61,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         String TelNo = editTextTelNo.getText().toString();
 
         //// TODO: 7/31/17 Implement own sign up logic here
+        //// TODO: 7/31/17 Capture phone IMEI/Unique id
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
@@ -120,4 +126,5 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     public void signUpFailed(){
 
     }
+
 }
