@@ -121,10 +121,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     public void signUpSuccess(){
-
+        //start next activity
     }
     public void signUpFailed(){
-
+        //present the user with an error
     }
 
 }
