@@ -13,16 +13,17 @@
         android:fullBackupContent="@xml/backup_descriptor">
         <activity android:name=".WelcomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+<!--                <action android:name="android.intent.action.VIEW" />-->
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="http"
-                    android:host="www.harlertechnologies.com"
-                    android:pathPrefix="/azima"/>
-                <data android:scheme="harlertechnologies"
-                    android:host="azima"/>
+<!--                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>-->
+                <!--<data android:scheme="http"-->
+                    <!--android:host="www.harlertechnologies.com"-->
+                    <!--android:pathPrefix="/azima"/>-->
+                <!--<data android:scheme="harlertechnologies"-->
+                    <!--android:host="azima"/>-->
+                <!--This commented lines should be in their own intent filter-->
             </intent-filter>
         </activity>
         <activity
