@@ -122,7 +122,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     public void signUpSuccess(){
         //start next activity
-        Toast.makeText(this,"Account created successfully", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Account created successfully toast", Toast.LENGTH_SHORT).show();
     }
     public void signUpFailed(){
         //present the user with an error
