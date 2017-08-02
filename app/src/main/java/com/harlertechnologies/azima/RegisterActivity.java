@@ -61,7 +61,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         String TelNo = editTextTelNo.getText().toString();
 
         //// TODO: 7/31/17 Implement own sign up logic here
-        //// TODO: 7/31/17 Capture phone IMEI/Unique id
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
@@ -121,7 +120,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     public void signUpSuccess(){
-        //start next activity
+        //// TODO: 8/2/17 Capture phone IMEI
+        ////start next activity
         Toast.makeText(this,"Account created successfully toast", Toast.LENGTH_SHORT).show();
     }
     public void signUpFailed(){
