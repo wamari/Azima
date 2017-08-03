@@ -20,4 +20,7 @@
     <string name="thanks_for_installing_let_s_get_you_set_up">Thanks for installing - let\'s get you set up!</string>
     <string name="welcome_to_azima">Welcome to Azima</string>
     <string name="_2547xxxxxxxx">+2547XXXXXXXX</string>
+    <string name="permissions_not_granted_read_phone_state">Permisson not granted</string>
+    <string name="permision_available_read_phone_state">Permission granted</string>
+
 </resources>
