@@ -203,7 +203,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 .setCancelable(false)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        // do somthing here
+                        // do something here
                     }
                 })
                 //.setIcon(R.drawable.onlinlinew_warning_sign)
