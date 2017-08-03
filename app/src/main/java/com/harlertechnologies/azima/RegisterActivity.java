@@ -84,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             @Override
             protected void onPostExecute(String s){
                 super.onPostExecute(s);
-                Toast.makeText(RegisterActivity.this,s,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(RegisterActivity.this,s,Toast.LENGTH_SHORT).show();
             }
 
             @Override
