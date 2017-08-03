@@ -1,20 +1,10 @@
 package com.harlertechnologies.azima;
 
-import android.Manifest;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.net.wifi.aware.PublishConfig;
-import android.os.Vibrator;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.telephony.TelephonyManager;
 import android.util.Patterns;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -26,9 +16,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private EditText editTextIDNo;
     private EditText editTextTelNo;
     private Button buttonCreate;
-
-    Vibrator vib;
-    //Animation animShake;
 
 
 
@@ -89,12 +76,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         String IDNo = editTextIDNo.getText().toString();
         String TelNo = editTextTelNo.getText().toString();
 
-        //animShake = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.shake);
-        vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         if(fullName.isEmpty() || fullName.length()<5){
             editTextFullname.setError("Name too short");
-            vib.vibrate(120);
             valid=false;
         }else{
             editTextFullname.setError(null);
