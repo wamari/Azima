@@ -5,7 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
-import android.support.annotation.MainThread;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
@@ -17,6 +17,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -43,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         //set listener for the button
         buttonCreate.setOnClickListener(this);
-        loadIMEI();
+        //loadIMEI();
     }
 
     public void signUp(){
@@ -55,16 +57,59 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         //disable create button
         //buttonCreate.setEnabled(false);
 
+        //get values from Edit text
+        final String fullName = editTextFullname.getText().toString().trim();
+        final String email = editTextEmail.getText().toString().trim();
+        final String IDNo = editTextIDNo.getText().toString().trim();
+        final String TelNo = editTextTelNo.getText().toString().trim();
+
+
+
+        //check if the READ_PHONE_STATE permission is already available
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
+                != PackageManager.PERMISSION_GRANTED){
+            //READ_PHONE_STATE permission has not been granted
+            requestReadPhoneStatePermission();
+        }else{
+            //READ_PHONE_STATE PERMISSION HAS BEEN GRANTED
+            //Have an  object of TelephonyManager
+            TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+            //GET IMEI NUMBER OF PHONE
+            final String IMEINumber = tm.getDeviceId();
+            //pass contents to toast
+            //Toast.makeText(this,"IMEI is "+IMEINumber, Toast.LENGTH_SHORT).show();
+        }
+
+        class AddUser extends AsyncTask<Void, Void, String>{
+            @Override
+            protected void onPostExecute(String s){
+                super.onPostExecute(s);
+                Toast.makeText(RegisterActivity.this,s,Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            protected String doInBackground(Void... v){
+                HashMap<String,String> params = new HashMap<>();
+                params.put(Config.KEY_USER_FULLNAME, fullName);
+                params.put(Config.KEY_USER_EMAIL, email);
+                params.put(Config.KEY_USER_IDNO, IDNo);
+                params.put(Config.KEY_USER_TELNO, TelNo);
+                //params.put(Config.KEY_USER_IMEI,IMEINumber);
+
+                RequestHandler rh = new RequestHandler();
+                String res = rh.sendPostRequest(Config.URL_ADD, params);
+                return res;
+            }
+        }
+        AddUser au = new AddUser();
+        au.execute();
+
+        //// TODO: 7/31/17 Implement own sign up logic here
+
+
         final ProgressDialog loading;
         loading=ProgressDialog.show(this,"Creating account...","Please Wait....", false, false);
 
-        //get values from Edit text
-        String fullName = editTextFullname.getText().toString();
-        String email = editTextEmail.getText().toString();
-        String IDNo = editTextIDNo.getText().toString();
-        String TelNo = editTextTelNo.getText().toString();
-
-        //// TODO: 7/31/17 Implement own sign up logic here
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
@@ -136,7 +181,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     /**
      * Called when the 'loadIMEI' function is triggered.
      */
-    public void loadIMEI(){
+/*    public void loadIMEI(){
         //check if the READ_PHONE_STATE permission is already available
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
                 != PackageManager.PERMISSION_GRANTED){
@@ -144,9 +189,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             requestReadPhoneStatePermission();
         }else{
             //READ_PHONE_STATE PERMISSION HAS BEEN GRANTED
-            doPermissionGrantedStuff();
+            //Have an  object of TelephonyManager
+            TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+            //GET IMEI NUMBER OF PHONE
+            String IMEINumber = tm.getDeviceId();
+            //pass contents to toast
+            Toast.makeText(this,"IMEI is "+IMEINumber, Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
     /**
      * Requests the READ_PHONE_STATE permission.
      * If the permission has been denied previously, a dialog will prompt the user to grant the
@@ -189,7 +239,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             if (grantResults.length ==1 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 // READ_PHONE_STATE permission has been granted, proceed with displaying IMEI Number
                 alertAlert(getString(R.string.permision_available_read_phone_state));
-                doPermissionGrantedStuff();
+                //doPermissionGrantedStuff();
             }else{
                 alertAlert(getString(R.string.permissions_not_granted_read_phone_state));
             }
@@ -210,12 +260,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 .show();
     }
 
-    public void doPermissionGrantedStuff(){
+/*    public void doPermissionGrantedStuff(){
         //Have an  object of TelephonyManager
         TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         //GET IMEI NUMBER OF PHONE
         String IMEINumber = tm.getDeviceId();
         //pass contents to toast
         Toast.makeText(this,"IMEI is "+IMEINumber, Toast.LENGTH_SHORT).show();
-    }
+    }*/
 }
