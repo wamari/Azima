@@ -14,7 +14,10 @@
     <string name="play_again">Play Again</string>
     <string name="create_account">Create Account</string>
     <string name="email_address">Email Address</string>
-    <string name="full_names">Full Names</string>
+    <string name="full_names">Full Names (as they appear on ID)</string>
     <string name="identification_number">Identification Number</string>
     <string name="telephone_number">Telephone Number</string>
+    <string name="thanks_for_installing_let_s_get_you_set_up">Thanks for installing - let\'s get you set up!</string>
+    <string name="welcome_to_azima">Welcome to Azima</string>
+    <string name="_2547xxxxxxxx">+2547XXXXXXXX</string>
 </resources>
