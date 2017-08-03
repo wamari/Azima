@@ -30,6 +30,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private static final int MY_PERMISSIONS_REQUEST_READ_PHONE_STATE = 0;
 
+    String public_imei;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,22 +66,20 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         final String TelNo = editTextTelNo.getText().toString().trim();
 
 
-
         //check if the READ_PHONE_STATE permission is already available
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
                 != PackageManager.PERMISSION_GRANTED){
             //READ_PHONE_STATE permission has not been granted
             requestReadPhoneStatePermission();
-        }else{
+        }else {
             //READ_PHONE_STATE PERMISSION HAS BEEN GRANTED
             //Have an  object of TelephonyManager
             TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
             //GET IMEI NUMBER OF PHONE
-            final String IMEINumber = tm.getDeviceId();
+            public_imei = tm.getDeviceId();
             //pass contents to toast
-            //Toast.makeText(this,"IMEI is "+IMEINumber, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,"IMEI is "+imei, Toast.LENGTH_SHORT).show();
         }
-
         class AddUser extends AsyncTask<Void, Void, String>{
             @Override
             protected void onPostExecute(String s){
@@ -94,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 params.put(Config.KEY_USER_EMAIL, email);
                 params.put(Config.KEY_USER_IDNO, IDNo);
                 params.put(Config.KEY_USER_TELNO, TelNo);
-                //params.put(Config.KEY_USER_IMEI,IMEINumber);
+                params.put(Config.KEY_USER_IMEI, public_imei);
 
                 RequestHandler rh = new RequestHandler();
                 String res = rh.sendPostRequest(Config.URL_ADD, params);
