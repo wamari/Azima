@@ -15,4 +15,5 @@ public class Config {
     public static final String KEY_USER_IDNO = "idno";
     public static final String KEY_USER_TELNO = "telno";
     public static final String KEY_USER_IMEI = "imei";
+    public static final String KEY_USER_LOAN_LIMIT = "loan_limit";
 }

@@ -31,6 +31,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private static final int MY_PERMISSIONS_REQUEST_READ_PHONE_STATE = 0;
 
     String imei;
+    String loan_limit;
 
 
     @Override
@@ -77,6 +78,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
             //GET IMEI NUMBER OF PHONE
             imei = tm.getDeviceId();
+
+            //assign loan limit
+            loan_limit = "1000";
             //pass contents to toast
             //Toast.makeText(this,"IMEI is "+imei, Toast.LENGTH_SHORT).show();
         }
@@ -95,6 +99,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 params.put(Config.KEY_USER_IDNO, IDNo);
                 params.put(Config.KEY_USER_TELNO, TelNo);
                 params.put(Config.KEY_USER_IMEI, imei);
+                params.put(Config.KEY_USER_LOAN_LIMIT, loan_limit);
 
                 RequestHandler rh = new RequestHandler();
                 String res = rh.sendPostRequest(Config.URL_ADD, params);
