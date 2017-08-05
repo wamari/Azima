@@ -7,7 +7,9 @@
  $idno = $_POST['idno'];
  $telno = $_POST['telno'];
  $imei = $_POST['imei'];
- $loan_limit = $_POST['loan_limit'];
+
+ //set loan limi to Ksh.1000
+ $loan_limit = 1000;
 
  //Creating an sql query
  $sql = "INSERT INTO tblusers (fullname, email, idno, telno, imei, loan_limit) VALUES ('$fullname','$email','$idno', '$telno', '$imei','$loan_limit')";
