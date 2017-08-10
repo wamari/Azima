@@ -243,7 +243,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             // Check if the only required permission has been granted
             if (grantResults.length ==1 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 // READ_PHONE_STATE permission has been granted, proceed with displaying IMEI Number
-                alertAlert(getString(R.string.permision_available_read_phone_state));
+                alertAlert(getString(R.string.permission_available_read_phone_state));
                 //doPermissionGrantedStuff();
             }else{
                 alertAlert(getString(R.string.permissions_not_granted_read_phone_state));
